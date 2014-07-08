@@ -5,6 +5,14 @@ class Gleb {
 	private $yandex_cleanweb_api_key;
 
     /**
+     * Функция выводит ошибку. Для использования самим классом
+     * @param $error string ошибка
+     */
+    private function DisplayError($error) {
+        print "<div style='margin: 10px 0;border: solid 1px red; background: #fff; color: #300;font-size:12px;line-height:16px;font-family: Arial, sans-serif;position: absolute;z-index: 10000;'>$error</div>";
+    }
+
+    /**
      * Возвращает тип файла (строковый код, например xls, pdf, doc). Бывает необходимо когда надо задать класс иконки, например .icon--pdf
      * @param $file_array array Принимает массив - результат битриксовой функции CFile::GetFileArray($file_id)
      * @return string Тип файла
@@ -101,7 +109,7 @@ class Gleb {
 			curl_close($ch);
 			return ($response->text['spam-flag'] == 'yes');
 		} else {
-			print "Не задан API ключ. Используйте SetCleanwebAPIKey. Получить можно тут – <a href='http://api.yandex.ru/key/form.xml?service=cw'>http://api.yandex.ru/key/form.xml?service=cw</a>";
+			$this->DisplayError("Не задан API ключ. Используйте SetCleanwebAPIKey. Получить можно тут – <a href='http://api.yandex.ru/key/form.xml?service=cw'>http://api.yandex.ru/key/form.xml?service=cw</a>");
 			return false;
 		}
 	}
