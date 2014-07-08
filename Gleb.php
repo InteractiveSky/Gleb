@@ -1,12 +1,15 @@
 <?
 class Gleb {
 
+
+	private $yandex_cleanweb_api_key;
+
     /**
-     * Фунция возвращает тип файла (строковый код, например xls, pdf, doc). Бывает необходимо когда надо задать класс иконки, например .icon--pdf
+     * Возвращает тип файла (строковый код, например xls, pdf, doc). Бывает необходимо когда надо задать класс иконки, например .icon--pdf
      * @param $file_array array Принимает массив - результат битриксовой функции CFile::GetFileArray($file_id)
      * @return string Тип файла
      */
-    public static function getFileType($file_array)
+    public static function GetFileType($file_array)
     {
         $type = false;
         switch ($file_array['CONTENT_TYPE']) {
@@ -21,7 +24,6 @@ class Gleb {
                 $type = 'jpeg';
                 break;
             case 'application/octet-stream':
-                //skyIn::msg('application/octet-stream');
                 if (preg_match('/\.(doc|docx)$/', $file_array['FILE_NAME'])) {
                     $type = 'doc';
 
@@ -36,7 +38,6 @@ class Gleb {
         }
         return $type;
     }
-	private $yandex_cleanweb_api_key;
 
 	/**
 	 * Склонение
