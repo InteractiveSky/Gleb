@@ -85,17 +85,19 @@ class Gleb
      * @param $to string Email получателя
      * @param $subject string Тема письма
      * @param $text string тело письма
-     * @param $from string Email отправителя
+     * @param $from mixed Email отправителя. По умолчанию false
      *
      * @return boolean Результат отправки письма
      */
-    public static function Pismo($to, $subject, $text, $from)
+    public static function Pismo($to, $subject, $text, $from=false)
     {
         $headers = "MIME-Version: 1.0" . "\n";
         $headers .= "Content-type: text/html; charset=utf-8" . "\n";
-        $headers .= 'From: ' . $from . "\n";
-        $headers .= 'Reply-To: ' . $from . "\n";
-        $headers .= 'Return-Path: ' . $from . "\n";
+        if ($from) {
+            $headers .= 'From: ' . $from . "\n";
+            $headers .= 'Reply-To: ' . $from . "\n";
+            $headers .= 'Return-Path: ' . $from . "\n";
+        }
         return mail($to, $subject, $text, $headers);
     }
 
