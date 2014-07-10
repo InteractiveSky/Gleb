@@ -7,6 +7,27 @@ class Gleb
     private $yandex_cleanweb_api_key;
 
     /**
+     * Создает массив из XML объекта
+     * @param mixed $xmlObject XML объект - результат функции simplexml_load_string(), например
+     * @return array
+     */
+    public static function XmlToArray($xmlObject)
+    {
+        $out = array();
+        foreach ((array)$xmlObject as $index => $node) {
+            if (empty($node) and (is_object($node) || is_array($node))) {
+                $node = '';
+            }
+            if (is_object($node) || is_array($node)) {
+                $out[$index] = SELF::xmlToArray($node);
+            } else {
+                $out[$index] = $node;
+            }
+        }
+        return $out;
+    }
+
+    /**
      * Выводит что-л. на экран или возвращает строку с этим чем-л.
      * @param mixed $object Массив, строка или что там еще вы хотите показать себе на экране во время разработки
      * @param bool $for_all Показываем только админам по умолчанию. можем показывать всем подраяд, в том числе навторизованым пользовтелям
@@ -85,19 +106,17 @@ class Gleb
      * @param $to string Email получателя
      * @param $subject string Тема письма
      * @param $text string тело письма
-     * @param $from mixed Email отправителя. По умолчанию false
+     * @param $from mixed Email отправителя
      *
      * @return boolean Результат отправки письма
      */
-    public static function Pismo($to, $subject, $text, $from=false)
+    public static function Pismo($to, $subject, $text, $from)
     {
         $headers = "MIME-Version: 1.0" . "\n";
         $headers .= "Content-type: text/html; charset=utf-8" . "\n";
-        if ($from) {
-            $headers .= 'From: ' . $from . "\n";
-            $headers .= 'Reply-To: ' . $from . "\n";
-            $headers .= 'Return-Path: ' . $from . "\n";
-        }
+        $headers .= 'From: ' . $from . "\n";
+        $headers .= 'Reply-To: ' . $from . "\n";
+        $headers .= 'Return-Path: ' . $from . "\n";
         return mail($to, $subject, $text, $headers);
     }
 
