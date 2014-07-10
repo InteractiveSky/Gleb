@@ -1,0 +1,11 @@
+.button__background {
+    display: block;
+    padding: 0 20px;
+
+}
+
+.button__border {
+    display: block;
+    height: 100%;
+
+}
