@@ -7,6 +7,46 @@ class Gleb
     private $yandex_cleanweb_api_key;
 
     /**
+     * Координаты указанные в процентах через запятую переводит в абсолютные величины (для area проценты в пиксели)
+     * @param $coords string Координаты в процентах через запятую (координаты area)
+     * @param $parentWidth int Ширина (map)
+     * @param $parentHeight int Выота (map)
+     * @return string Возвращает координаты через запятую (указанные в пикселях)
+     */
+    public static function AreaCoordsToPix($coords, $parentWidth, $parentHeight)
+    {
+
+        $coordsArray = explode(',', $coords);
+        $resArray = array();
+        $cnt = 0;
+        foreach ($coordsArray as $ca) {
+            $cnt++;
+
+            if ($cnt % 2 == 1) {
+                $num = $parentWidth;
+                //echo '<pre>' . print_r('x', true) . '</pre>';
+            } else {
+                $num = $parentHeight;
+                //echo '<pre>' . print_r('y', true) . '</pre>';
+            }
+            $resArray[] = Gleb::PercentToNum($ca, $num);
+        }
+        return implode(',', $resArray);
+    }
+
+
+    /**
+     * Вычисляет число от процента
+     * @param $percent int Проценты
+     * @param $num int Число
+     * @return mixed
+     */
+    public static function PercentToNum($percent, $num)
+    {
+        return $num * ($percent / 100);
+    }
+
+    /**
      * Создает массив из XML объекта
      * @param mixed $xmlObject XML объект - результат функции simplexml_load_string(), например
      * @return array
