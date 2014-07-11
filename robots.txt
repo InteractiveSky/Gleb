@@ -1,3 +1,5 @@
+#Sitemap: http://www.gmenergo.ru/sitemap_index.xml
+#Host: gmenergo.ru
 User-agent: *
 Disallow: /bitrix/
 Disallow: /search/
@@ -28,4 +30,3 @@ Disallow: /*back_url=*
 Disallow: /*BACK_URL=*
 Disallow: /*back_url_admin=*
 Disallow: /*utm_source
-Host: 
