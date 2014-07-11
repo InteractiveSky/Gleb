@@ -1,22 +1,22 @@
-$(document).ready(function () {
-    $('ul li:first-child, table tr td:first-child, table tr:first-child, .tbl .td:first-child').addClass('first');
-    $('ul li:last-child, table tr td:last-child, table tr:last-child, .tbl .td:last-child').addClass('last');
-    $('body').on('submit', '.fancybox-inner form', function(e){
-        e.preventDefault();
-        submitAjaxForm(e, $(this));
-    })
-    $('.g-justify').append('<li style="width:100%;display:inline-block;" class="g-justify__empty-item"></li>');
-});
+/**
+ * В этом файле собраны разные полезные js функции и небольшие jQuery плагины
+ */
 
 function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+/**
+ * Фораматирование числа (1523256.13 => 1 523 256,13)
+ * @param n Число, которое нужно форматировать
+ * @param str Разделитель
+ * @returns {string}
+ */
 function formatNum(n, str) {
     var n = ('' + n).split('.');
     var num = n[0];
     var dec = n[1];
-    var r, s, t;
+    var s, t;
     if (num.length > 3) {
         s = num.length % 3;
         if (s) {
@@ -31,36 +31,26 @@ function formatNum(n, str) {
     }
     return num + (dec ? '.' + dec : '');
 }
-
-function submitAjaxForm(e, f){
-    e.preventDefault();
-    var d = f.serializeArray();
-    var fc = f.attr('class');
-    var fa = f.attr('action');
-    $.post(fa, d, function(r){
-
-
-        var af = $('<div>'+r+'</div>').find('form').filter('[class="'+fc+'"][action="'+fa+'"]');
-
-        //console.log(af);
-        af.find('input[placeholder]').onBlur();
-        f.parent().html(af);
-        var strFun = f.attr('data-func');
-        var fn = window[strFun];
-        if (fn!==undefined) {
-            fn(r);
-        }
-        //console.log(af);
-    })
+/**
+ * RGB код цвета переводит в хеш код
+ * @param rgb
+ * @returns {string}
+ */
+function rgb2hex(rgb) {
+    function hex(x) {
+        return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+    }
+    var hexDigits = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f");
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
 
+/**
+ * Тру плейсхолдер
+ */
 (function ($) {
     $.fn.onBlur = function () {
-        //console.log('onBlur');
-
         var obj = $(this);
-        //console.log(obj);
-
         $(obj).each(function (i, o) {
             $(o).addClass('placeholder');
             if ($(o).is('[type="password"]')){
@@ -75,7 +65,6 @@ function submitAjaxForm(e, f){
             $(o).removeAttr('placeholder');
 
         });
-
         $(obj).blur(function () {
             if ($(this).val() == "") {
                 $(this).val($(this).attr("data-placeholder"));
@@ -87,7 +76,6 @@ function submitAjaxForm(e, f){
             }
 
         });
-
         $(obj).focus(function () {
             if ($(this).is('[data-type="password"]')) {
                 $(this).prop('type', 'password');
