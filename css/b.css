@@ -1,35 +1,51 @@
-.clearfix:before, .clearfix:after {
-    content: " ";
-    display: table;
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
-
-.clearfix:after {
-    clear: both;
+body {
+    font-family: Arial, serif;
+    font-size: 12px;
 }
-
 table {
     border-collapse: collapse;
 }
-
 table td, table th {
     padding: 0;
     border: none 0;
 }
-
 button::-moz-focus-inner {
     border: 0;
     padding: 0;
     line-height: normal !important;
 }
-
 input[type="text"],
 input[type="password"],
 textarea {
     outline: none;
     resize: none;
 }
-
-.usn {
+h1, h2, h3 {
+    font-weight: normal;
+}
+a, a:focus {
+    outline: none;
+}
+a img {
+    border: none;
+}
+.clear {
+    float: none;
+    clear: both;
+    font-size: 0;
+}
+.wrapper {
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 10px;
+    position: relative;
+}
+.no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -37,84 +53,9 @@ textarea {
     -ms-user-select: none;
     user-select: none;
 }
-
-h1, h2, h3 {
-    font-weight: normal;
-}
-
-a, a:focus {
-    outline: none;
-}
-
-a img {
-    border: none;
-}
-
-.clear {
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: block;
     float: none;
     clear: both;
-    font-size: 0;
-}
-
-.mxw {
-    max-width: 1000px;
-    margin: auto;
-    padding: 0 10px;
-    position: relative;
-}
-
-html, body {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    font-family: Arial, serif;
-    font-size: 12px;
-
-}
-
-.g-justify {
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-    text-align: justify;
-}
-
-.g-justify__item {
-    display: inline-block;
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-    vertical-align: middle;
-    line-height: 14px;
-    text-align: left;
-}
-
-.g-justify__empty-item{
-
-}
-
-.g-row{
-    margin-left: -30px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-.g-row:before, .g-row:after {
-    content: " ";
-    display: table;
-    clear: both;
-}
-
-.g-row__col{
-    float: left;
-}
-
-.g-row__col--2{
-    width: 50%;
-}
-
-.g-row__content{
-    margin-left: 30px;
 }
