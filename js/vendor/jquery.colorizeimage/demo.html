@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo colorize image</title>
+</head>
+<body>
+<p>При наведении черно-белая картинка становится цветной.</p>
+<ul>
+    <li>
+        <img alt="" src="img/google-not-color.png" data-colored="img/google-color.png" class="uncolored" />
+    </li>
+    <li>
+        <a href="http://www.skyin.ru/"><img alt="" src="img/interactive-sky-uncolored.jpg" data-colored="img/interactive-sky.jpg" class="uncolored" /></a>
+    </li>
+</ul>
+
+
+
+<script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/jquery.colorize-image.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.uncolored').ColorizeImage();
+    })
+</script>
+</body>
+</html>
