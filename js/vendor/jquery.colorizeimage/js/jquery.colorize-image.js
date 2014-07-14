@@ -6,7 +6,6 @@
         var wrapper = $('<div class="' + n_class + '"></div>').css({position: 'relative'});
         obj.each(function (i, o) {
             var img = $(o);
-            img.css({position: 'relative', zIndex: 1});
             var colored = img.attr('data-colored');
             if (colored !== undefined) {
                 var col_img = $('<img alt="" src="' + colored + '" />').css({
