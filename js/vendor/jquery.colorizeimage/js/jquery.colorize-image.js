@@ -3,7 +3,7 @@
         var obj = $(this);
         var selector = obj.selector;
         var n_class = selector.substring(1);
-        var wrapper = $('<div class="' + n_class + '"></div>').css({display: 'inline-block', position: 'relative'});
+        var wrapper = $('<div class="' + n_class + '"></div>').css({position: 'relative'});
         obj.each(function (i, o) {
             var img = $(o);
             img.css({position: 'relative', zIndex: 1});
