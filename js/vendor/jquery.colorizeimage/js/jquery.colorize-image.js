@@ -7,7 +7,8 @@
         obj.each(function (i, o) {
             var img = $(o);
             var colored = img.attr('data-colored');
-            if (colored !== undefined) {
+            console.log(colored);
+            if (colored !== undefined && colored!=='') {
                 var col_img = $('<img alt="" src="' + colored + '" />').css({
                     display: 'block',
                     position: 'absolute',
@@ -16,16 +17,16 @@
                     left:0
                 });
                 col_img.addClass(n_class + '__colored').hide();
-                img.addClass(n_class + '__uncolored').removeClass(n_class).wrap(wrapper).after(col_img);
             }
+            img.addClass(n_class + '__uncolored').removeClass(n_class).wrap(wrapper).after(col_img);
         });
-        $('body').on('mouseenter', selector + '__uncolored', function () {
+        var body = $('body');
+        body.on('mouseenter', selector + '__uncolored', function () {
             var cl = $(this).closest(selector);
             var colored = cl.find(selector + '__colored');
-            //console.log(colored);
             colored.stop(true, true).fadeIn(300);
         });
-        $('body').on('mouseleave', selector + '__colored', function () {
+        body.on('mouseleave', selector + '__colored', function () {
             $(this).stop(true, true).fadeOut(300);
         });
     };
