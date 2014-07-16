@@ -7,6 +7,23 @@ class Gleb
     private $yandex_cleanweb_api_key;
 
     /**
+     * Генерирует "код" по url
+     * Может быть полезно, для ыгенерации css класса по url страниц
+     * /speaker-form/  => speaker-form
+     * @param bool $url Адрес страницы
+     * @return string
+     */
+    public static function GetUrlCode($url = false)
+    {
+        if (!$url) {
+            global $APPLICATION;
+            $url = $APPLICATION->GetCurPage();
+        }
+        $result = preg_replace('/^\/(.+?)\/$/', '\\1', $url);
+        return $result;
+    }
+
+    /**
      * Координаты указанные в процентах через запятую переводит в абсолютные величины (для area проценты в пиксели)
      * @param $coords string Координаты в процентах через запятую (координаты area)
      * @param $parentWidth int Ширина (map)
