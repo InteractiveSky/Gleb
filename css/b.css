@@ -1,49 +1,11 @@
-* {
-    box-sizing: border-box;
-}
-*:before, *:after {
-    box-sizing: border-box;
-}
-html, body {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-}
-body {
-    font-family: Arial, serif;
-    font-size: 12px;
-}
-table {
-    border-collapse: collapse;
-}
-table td, table th {
-    padding: 0;
-    border: none 0;
-}
-button::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-    line-height: normal !important;
-}
-input[type="text"],
-input[type="password"],
-textarea {
-    outline: none;
-    resize: none;
-}
-h1, h2, h3 {
-    font-weight: normal;
-}
-a, a:focus {
-    outline: none;
-}
-a img {
-    border: none;
-}
-.clear {
+/** В этом файле будут находиться универсальные классы блоков **/
+.clearfix:before,
+.clearfix:after,
+.clear{
+    content: " ";
+    display: block;
     float: none;
     clear: both;
-    font-size: 0;
 }
 .wrapper {
     max-width: 1000px;
@@ -58,10 +20,4 @@ a img {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-.clearfix:before, .clearfix:after {
-    content: " ";
-    display: block;
-    float: none;
-    clear: both;
 }
