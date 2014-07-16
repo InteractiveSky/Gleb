@@ -168,7 +168,7 @@ class Gleb
     /**
      * Проверка формы на спам
      * @static
-     * @param $value mixed Массив или строка для проверки на спам
+     * @param $value mixed Одномерный массив или строка для проверки на спам
      *
      * @return boolean Спам (true) или нет (false)
      */
