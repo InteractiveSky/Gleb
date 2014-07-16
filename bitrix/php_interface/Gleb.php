@@ -191,7 +191,7 @@ class Gleb
             curl_close($ch);
             return ($response->text['spam-flag'] == 'yes');
         } else {
-            print "Не задан API ключ. Используйте SetCleanwebAPIKey. Получить можно тут – <a href='http://api.yandex.ru/key/form.xml?service=cw'>http://api.yandex.ru/key/form.xml?service=cw</a>";
+            print "Не задан API ключ. Используйте SetCleanwebAPIKey. Получить можно тут – <a target='_blank' href='http://api.yandex.ru/key/form.xml?service=cw'>http://api.yandex.ru/key/form.xml?service=cw</a>";
             return false;
         }
     }
