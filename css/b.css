@@ -3,9 +3,10 @@
 .clearfix:after,
 .clear{
     content: " ";
-    display: block;
-    float: none;
+    display: table;
     clear: both;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .wrapper {
     max-width: 1000px;
