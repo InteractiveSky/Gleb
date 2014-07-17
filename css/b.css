@@ -21,14 +21,15 @@
     -ms-user-select: none;
     user-select: none;
 }
-.inline-dl dd{
+.inline-dl__dd{
     padding: 0;
     margin: 0;
+    display: inline;
 }
-.inline-dl dt{
-    float: left;
+.inline-dl__dt{
+    display: inline;
 }
-.inline-dl dd:after{
+.inline-dl__dd:after{
     content: "";
     display: block;
     float: none;
