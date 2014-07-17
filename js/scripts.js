@@ -1,7 +1,5 @@
 $(document).ready(function () {
-    $('.bxslider').bxSlider({
-        pager: false
-    });
+
 });
 $(window).load(function () {
 
@@ -9,6 +7,11 @@ $(window).load(function () {
 $(window).scroll(function () {
 
 });
+function bxSlider(){
+    $('.bxslider').bxSlider({
+        pager: false
+    });
+}
 function ui_tabs(){
     $(".tabs").tabs();
 }

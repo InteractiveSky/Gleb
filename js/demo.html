@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="http://yandex.st/jquery-ui/1.10.4/themes/base/jquery-ui.min.css" />
+    <link rel="stylesheet" href="b.css"/>
+    <style type="text/css">
+        section{
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+<h1>Примеры использования js функций</h1>
+<section>
+    <h2>Табы jQuery UI</h2>
+    <div class="tabs">
+        <ul class="tabs__list">
+            <li class="tabs__item"><a class="tabs__title" href="#tabs-1">Nunc tincidunt</a></li>
+            <li class="tabs__item"><a class="tabs__title" href="#tabs-2">Proin dolor</a></li>
+            <li class="tabs__item"><a class="tabs__title" href="#tabs-3">Aenean lacinia</a></li>
+        </ul>
+        <div class="tabs__panes">
+            <div class="tabs__pane" id="tabs-1">
+                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet
+                    mauris.
+                    Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
+                    ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam
+                    nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
+                    Phasellus ipsum. Nunc tristique tempus lectus.</p>
+            </div>
+            <div class="tabs__pane" id="tabs-2">
+                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque
+                    molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor.
+                    Aenean
+                    aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing
+                    adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat
+                    volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu
+                    ornare
+                    leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+            </div>
+            <div class="tabs__pane" id="tabs-3">
+                <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque
+                    rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per
+                    conubia
+                    nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit
+                    ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+
+                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent
+                    viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra
+                    blandit,
+                    magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo.
+                    Ut
+                    sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum
+                    rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <h2>Карты</h2>
+    <h3>Google с маркером</h3>
+    <p>Надо для дива указать атрибуты</p>
+    <ul>
+        <li><em>data-map="google"</em> создаем Google карты</li>
+        <li><em>data-coords="57.621755, 39.891075"</em> координаты <b>центра</b> карты</li>
+        <li><em>data-object="57.618905, 39.899658"</em> координаты <b>объекта</b> на карте</li>
+    </ul>
+    <div class="google-simple-map" style="height: 200px;" data-map="google" data-zoom="10" data-coords="57.621755, 39.891075" data-object="57.618905, 39.899658"></div>
+</section>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
+<script src="../js/scripts.js"></script>
+<script>
+    ui_tabs();
+    google_maps();
+</script>
+</body>
+</html>
