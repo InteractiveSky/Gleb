@@ -93,9 +93,19 @@
     right: 0;
 }
 .tabs__panes{
+    padding: 20px 0;
 
 }
+.tabs__panes p:first-child{
+    margin-top: 0;
+}
+.tabs__panes p:last-child{
+    margin-bottom: 0;
+}
 
-.tabs__pane{
+.tabs__pane,
+.ui-tabs .ui-tabs-panel.tabs__pane{
+    font-size: 12px;
+    padding: 0;
 
 }

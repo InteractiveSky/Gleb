@@ -9,6 +9,9 @@ $(window).load(function () {
 $(window).scroll(function () {
 
 });
+function ui_tabs(){
+    $(".tabs").tabs();
+}
 function datePicker() {
     $(".input-text--date").datepicker({
         showOn: "both",
