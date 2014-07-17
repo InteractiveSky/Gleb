@@ -13,7 +13,7 @@
     <title>Site under construction</title>
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/b.css">
+    <link rel="stylesheet" href="/css/globals.css">
     <link rel="stylesheet" href="/bitrix/templates/template_name/template_styles.css">
 </head>
 <body>
