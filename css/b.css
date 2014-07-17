@@ -21,3 +21,17 @@
     -ms-user-select: none;
     user-select: none;
 }
+.inline-dl dd{
+    padding: 0;
+    margin: 0;
+}
+.inline-dl dt{
+    float: left;
+}
+.inline-dl dd:after{
+    content: "";
+    display: block;
+    float: none;
+    clear: both;
+    font-size: 0;
+}
