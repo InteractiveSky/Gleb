@@ -3,16 +3,20 @@
 <head>
     <meta charset="utf-8"/>
     <title>Title</title>
-    <link rel="stylesheet" href="http://yandex.st/jquery-ui/1.10.4/themes/base/jquery-ui.min.css" />
+    <link rel="stylesheet" href="http://yandex.st/jquery-ui/1.10.4/themes/base/jquery-ui.min.css"/>
+    <link rel="stylesheet" href="normalize.css"/>
     <link rel="stylesheet" href="globals.css"/>
     <style type="text/css">
-        section{
+        body{
+            padding: 20px;
+        }
+        section {
             margin-bottom: 40px;
         }
     </style>
 </head>
 <body>
-<h1>Примеры использования БЭМ блоков</h1>
+<h1>Примеры использования globals.css</h1>
 
 <section>
     <h2>Список определений в одну строку</h2>
@@ -81,6 +85,10 @@
             </div>
         </div>
     </div>
+</section>
+<section>
+    <h2>Кастомный чекбокс</h2>
+    <input type="checkbox" class="checkbox" id="checkbox1" /> <label for="checkbox1" class="checkbox-label no-select">Лейбл для катсомного чекбоокса</label>
 </section>
 <script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
