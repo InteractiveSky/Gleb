@@ -70,13 +70,19 @@
     </ul>
     <div class="google-simple-map" style="height: 200px;" data-map="google" data-zoom="10" data-coords="57.621755, 39.891075" data-object="57.618905, 39.899658"></div>
 </section>
+<section>
+    <h2>Timepicker &mdash; выбор времени</h2>
+    <input data-type="time" readonly />
+</section>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 <script src="http://yandex.st/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://yandex.st/jquery-ui/1.10.4/jquery-ui.min.js"></script>
+<script src="vendor/jQuery-Timepicker-Addon/src/jquery-ui-timepicker-addon.js"></script>
 <script src="../js/scripts.js"></script>
 <script>
     ui_tabs();
     google_maps();
+    timepicker();
 </script>
 </body>
 </html>
