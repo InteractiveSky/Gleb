@@ -14,6 +14,6 @@
 
 ```javascript
 $(document).ready(function(){
-  $('.uncolored-images').ColorizeImage();
+  $('.uncolored').ColorizeImage();
 });
 ```
