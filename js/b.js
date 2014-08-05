@@ -2,6 +2,31 @@
  * В этом файле собраны разные полезные js функции и небольшие jQuery плагины
  */
 
+/**
+ * "Правильный" диапазон дат для jQuery.datePicker()
+ * Пример на http://sponsorburo.ru/
+ * @param obj
+ * @constructor
+ */
+function TrueDatesRange(obj){
+    obj.datepicker("option", "minDate", 0);
+    obj.change(function (e) {
+        var t = $(this);
+        var min = $('[name="' + t.attr('data-min') + '"]');
+        var max = $('[name="' + t.attr('data-max') + '"]');
+        var d = t.datepicker('getDate');
+        if (d === null) {
+            d = 0;
+        }
+        if (min.size() == 1) {
+            min.datepicker("option", "maxDate", d);
+        }
+        if (max.size() == 1) {
+            max.datepicker("option", "minDate", d);
+        }
+    })
+}
+
 function isNumber(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
