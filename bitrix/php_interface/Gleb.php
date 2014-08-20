@@ -5,6 +5,7 @@ class Gleb
 
 
     private $yandex_cleanweb_api_key;
+    private $yandex_translate_api_key;
 
     public static function MonthRu($month_number, $form = 1)
     {
@@ -366,5 +367,29 @@ class Gleb
         return $str;
     }
 
+
+    function SetTranslateAPIKey($key){
+        $this->yandex_translate_api_key = $key;
+    }
+
+    /**
+     * Перевод Яндекс.Переводом
+     * @access public
+     * @param $str string Строка для перевода
+     * @param $lang string Направление перевода ("ru-en", "en")
+     * @param $format string Формат текста (plain — текст без разметки / html — текст в формате)
+     *
+     * @return string
+     */
+    public function YandexTranslate($str, $lang = 'en', $format = 'plain'){
+        if($this->yandex_translate_api_key){
+            $url = file_get_contents('https://translate.yandex.net/api/v1.5/tr.json/translate?key=' . $this->yandex_translate_api_key . '&text=' . urlencode($str) . '&lang=' . $lang . '&format=' . $format);
+            $json = json_decode($url);
+            return $json->text[0];
+        }else{
+            print "Не задан API ключ. Используйте SetTranslateAPIKey. Получить можно тут – <a target='_blank' href='http://api.yandex.ru/key/form.xml?service=trnsl'>http://api.yandex.ru/key/form.xml?service=trnsl</a>";
+            return false;
+        }
+    }
 
 }
