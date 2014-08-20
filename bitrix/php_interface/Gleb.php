@@ -338,4 +338,33 @@ class Gleb
         return number_format($number, $decimals, '.', $thousands_sep);
     }
 
+    /**
+     * Транслитерация строки
+     * @access public
+     * @param $str string Строка для транслитерации
+     *
+     * @return string
+     */
+    public function translite($str){
+        $str = mb_strtolower($str);
+        $converter = array(
+            'а' => 'a',   'б' => 'b',   'в' => 'v',
+            'г' => 'g',   'д' => 'd',   'е' => 'e',
+            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
+            'и' => 'i',   'й' => 'y',   'к' => 'k',
+            'л' => 'l',   'м' => 'm',   'н' => 'n',
+            'о' => 'o',   'п' => 'p',   'р' => 'r',
+            'с' => 's',   'т' => 't',   'у' => 'u',
+            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
+            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
+            'ь' => '',  'ы' => 'y',   'ъ' => '',
+            'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
+        );
+        $str = strtr($str, $converter);
+        $str = preg_replace('~[^-a-z0-9_]+~u', '_', $str);
+        $str = trim($str, "_");
+        return $str;
+    }
+
+
 }
