@@ -392,4 +392,22 @@ class Gleb
         }
     }
 
+    /**
+     * Поучение координат точки по адресу
+     * @access public
+     * @param $address string Адрес для которого нужны координаты
+     *
+     * @return string
+     */
+    public function getCoordsByAddress($address)
+    {
+        $params = array(
+            'geocode' => $address,
+            'format' => 'json',
+        );
+        $data = json_decode(file_get_contents('http://geocode-maps.yandex.ru/1.x/?' . http_build_query($params, '', '&')));
+        $coords = explode(" ", $data->response->GeoObjectCollection->featureMember[0]->GeoObject->Point->pos);
+        return $coords[1] . "," . $coords[0];
+    }
+
 }
