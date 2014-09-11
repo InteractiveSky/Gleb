@@ -18,6 +18,7 @@ while ($ob = $res->GetNext()) {
     print_r($ob);
 }
 
+
 /**
  * Ресайз картинки
  */
