@@ -178,8 +178,17 @@ class Gleb
             case 'application/zip':
                 $type = 'zip';
                 break;
+            case 'application/x-rar':
+                $type = 'rar';
+                break;
             case 'image/jpeg':
                 $type = 'jpeg';
+                break;
+            case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+                $type = 'xls';
+                break;
+            case 'application/vnd.openxmlformats-officedocument.spreadsheetml.document':
+                $type = 'doc';
                 break;
             case 'application/octet-stream':
                 if (preg_match('/\.(doc|docx)$/', $file_array['FILE_NAME'])) {
