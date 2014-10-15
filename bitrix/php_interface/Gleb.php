@@ -73,6 +73,7 @@ class Gleb
             $url = $APPLICATION->GetCurPage();
         }
         $result = preg_replace('/^\/(.+?)\/$/', '\\1', $url);
+        $result = str_replace('/', '_', $result);
         return $result;
     }
 
