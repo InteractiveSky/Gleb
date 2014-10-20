@@ -403,7 +403,7 @@ class Gleb
     }
 
     /**
-     * Поучение координат точки по адресу
+     * Получение координат точки по адресу
      * @access public
      * @param $address string Адрес для которого нужны координаты
      *
@@ -419,5 +419,49 @@ class Gleb
         $coords = explode(" ", $data->response->GeoObjectCollection->featureMember[0]->GeoObject->Point->pos);
         return $coords[1] . "," . $coords[0];
     }
+
+    /**
+     * Форматирование номера телефона
+     * @access public
+     * @param $phone string Номер телефона
+     *
+     * @return string
+     */
+    public function phone_format($phone) {
+        $format = array(
+            '6' => '(4852) ##-##-##',
+            '10' => '+7 (###) ###-##-##',
+        );
+        $phone = str_replace(" ", "", preg_replace("/[^0-9\s]/", "", trim($phone)));
+        if(strlen($phone) == 11){
+            $phone = substr($phone, 1);
+        }elseif(strlen($phone) == 10){
+            // continue
+        }else{
+            $phone = false;
+        }
+        if(strpos($phone, '4852') !== false){
+            $phone = str_replace('4852', '', $phone);
+        }
+        $phone = trim($phone);
+        if (is_array($format)) {
+            if (array_key_exists(strlen($phone), $format)) {
+                $format = $format[strlen($phone)];
+            } else {
+                return false;
+            }
+        }
+        $pattern = '/' . str_repeat('([0-9])?', substr_count($format, '#')) . '(.*)/';
+        $format = preg_replace_callback(
+            str_replace('#', '#', '/([#])/'),
+            function () use (&$counter) {
+                return '${' . (++$counter) . '}';
+            },
+            $format
+        );
+
+        return ($phone) ? trim(preg_replace($pattern, $format, $phone, 1)) : false;
+    }
+
 
 }
