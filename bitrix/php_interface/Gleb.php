@@ -11,9 +11,11 @@ class Gleb
     public static function GetYoutubeLinkInfo($url)
     {
         $result = array();
-        preg_match('/watch\?v=([^&]*)/ui', $url, $matches);
-        $result['link'] = '//www.youtube.com/embed/' . $matches[1] . '?wmode=opaque';
-        $result['code'] = $matches[1];
+        if (preg_match('/watch\?v=([^&]*)/ui', $url, $matches)) {
+            $result['link'] = '//www.youtube.com/embed/' . $matches[1] . '?wmode=opaque';
+            $result['code'] = $matches[1];
+            $result['img'] = 'http://img.youtube.com/vi/'.$matches[1].'/maxresdefault.jpg';
+        };
         return $result;
     }
 
