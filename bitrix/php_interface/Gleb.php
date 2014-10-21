@@ -4,9 +4,12 @@ class Gleb
 {
 
     /**
-     * Генерирует ссылку на роолик для fancybox и iframe
+     * Генерирует информацию о youtube ролике
+     * link - ссылка для fancybox и iframe, например
+     * code - код ролика (мало ли для чего пригодится)
+     * img - "скриншот" видео-ролика в высоком разрешении
      * @param string $url Ссылка на ролик
-     * @return string
+     * @return array
      */
     public static function GetYoutubeLinkInfo($url)
     {
