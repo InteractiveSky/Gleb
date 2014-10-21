@@ -4,6 +4,28 @@ class Gleb
 {
 
     /**
+     * Возвращает размер файла в удобном формате
+     * @param int $size Размер файла в байтах
+     * @param string $lang Локализация (по умолчанию русская)
+     * @return string
+     */
+    public static function GetFileSize($size, $lang = 'ru')
+    {
+        $langArray = array(
+            'ru' => array('Кб', 'Мб'),
+            'en' => array('Kb', 'Mb'),
+        );
+        $code = 0;
+        $s = ($size / 1024);
+        if ($s >= 1024) {
+            $s = $s / 1024;
+            $code = 1;
+        }
+        $result = number_format($s, 2, ', ', ' ') . '&nbsp;' . $langArray[$lang][$code];
+        return $result;
+    }
+
+    /**
      * Генерирует информацию о youtube ролике
      * link - ссылка для fancybox и iframe, например
      * code - код ролика (мало ли для чего пригодится)
