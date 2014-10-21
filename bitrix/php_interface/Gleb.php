@@ -5,13 +5,15 @@ class Gleb
 
     /**
      * Генерирует ссылку на роолик для fancybox и iframe
-     * @param string $url Ссылка на роллик
+     * @param string $url Ссылка на ролик
      * @return string
      */
-    public static function GetYoutubeLink($url)
+    public static function GetYoutubeLinkInfo($url)
     {
+        $result = array();
         preg_match('/watch\?v=([^&]*)/ui', $url, $matches);
-        $result = '//www.youtube.com/embed/' . $matches[1] . '?wmode=opaque';
+        $result['link'] = '//www.youtube.com/embed/' . $matches[1] . '?wmode=opaque';
+        $result['code'] = $matches[1];
         return $result;
     }
 
