@@ -503,5 +503,22 @@ class Gleb
         return ($phone) ? trim(preg_replace($pattern, $format, $phone, 1)) : false;
     }
 
-
+    /**
+     * Форматирование $_FILES в нормальный формат
+     * @access public
+     * @param $file_post array массив $_FILES['some']
+     *
+     * @return array
+     */
+    public function reArrayFiles(&$file_post) {
+        $file_ary = array();
+        $file_count = count($file_post['name']);
+        $file_keys = array_keys($file_post);
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_ary[$i][$key] = $file_post[$key][$i];
+            }
+        }
+        return $file_ary;
+    }
 }
