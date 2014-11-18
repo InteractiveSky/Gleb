@@ -504,7 +504,7 @@ class Gleb
     }
 
     /**
-     * Форматирование $_FILES в нормальный формат
+     * Форматирование $_FILES в формат CFile::MakeFileArray()
      * @access public
      * @param $file_post array массив $_FILES['some']
      *
