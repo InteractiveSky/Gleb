@@ -51,7 +51,7 @@ class CSms {
      * @param string $from От кого (подпись должна быть подтверждена на сайте)
      * @return string Возвращает результат в формате json
      */
-    public static function SendSMS($message, $phone, $from = 'RESERVE24'){
+    public static function SendSMS($message, $phone, $from = 'mytestsms'){
         $tm = self::GetTimestamp();
         $sign = array(
             'timestamp' => $tm,
