@@ -12,15 +12,15 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 				$label = '';
 				break;
 			case 'dropdown':
-				$label = '<label class="b-auth--label">' . $arQuestions['TITLE'] .'</label>';
+				$label = '<label class="b-auth--label">' . $arQuestions['TITLE'] . (($arQuestions['REQUIRED'] == 'Y')?'<span class="b-auth--required">*</span>':'') .'</label>';
 				$label .= '<select class="b-auth--input" name="form_dropdown_' . $key . '" id="form_dropdown_' . $key . '">';
 				break;
 			case 'multiselect':
-				$label = '<label class="b-auth--label">' . $arQuestions['TITLE'] .'</label>';
+				$label = '<label class="b-auth--label">' . $arQuestions['TITLE'] . (($arQuestions['REQUIRED'] == 'Y')?'<span class="b-auth--required">*</span>':'') . '</label>';
 				$label .= '<select class="b-auth--input" multiple="" name="form_multiselect_' . $key . '[]" id="form_multiselect_' . $key . '[]" size="0">';
 				break;
 			default:
-				$label = '<label class="b-auth--label">' . $arQuestions['TITLE'] .'</label>';
+				$label = '<label class="b-auth--label">' . $arQuestions['TITLE'] . (($arQuestions['REQUIRED'] == 'Y')?'<span class="b-auth--required">*</span>':'') .'</label>';
 				break;
 		}
 		if($label) {
