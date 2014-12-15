@@ -4,6 +4,32 @@ class Gleb
 {
 
     /**
+     * Запись в лог InteractiveSky
+     * @param string $project Домен проекта (например, skyin.ru)
+     * @param string $section Код операции (например, updateElement)
+     * @param string|array $content Содержимое записи - строка или массив
+     */
+    function PushToLog($project, $section = "", $content = "")
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://logs.skyin.ru/push/");
+        curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, Array(
+            "query" => json_encode(Array(
+                "project" => $project,
+                "section" => $section,
+                "content" => $content
+            )),
+            "login" => "",
+            "password" => ""
+        ));
+        curl_exec($ch);
+    }
+
+    /**
      * Возвращает размер файла в удобном формате
      * @param int $size Размер файла в байтах
      * @param string $lang Локализация (по умолчанию русская)
@@ -39,7 +65,7 @@ class Gleb
         if (preg_match('/watch\?v=([^&]*)/ui', $url, $matches)) {
             $result['link'] = '//www.youtube.com/embed/' . $matches[1] . '?wmode=opaque';
             $result['code'] = $matches[1];
-            $result['img'] = 'http://img.youtube.com/vi/'.$matches[1].'/maxresdefault.jpg';
+            $result['img'] = 'http://img.youtube.com/vi/' . $matches[1] . '/maxresdefault.jpg';
         };
         return $result;
     }
@@ -396,20 +422,21 @@ class Gleb
      *
      * @return string
      */
-    public function translite($str){
+    public function translite($str)
+    {
         $str = mb_strtolower($str);
         $converter = array(
-            'а' => 'a',   'б' => 'b',   'в' => 'v',
-            'г' => 'g',   'д' => 'd',   'е' => 'e',
-            'ё' => 'e',   'ж' => 'zh',  'з' => 'z',
-            'и' => 'i',   'й' => 'y',   'к' => 'k',
-            'л' => 'l',   'м' => 'm',   'н' => 'n',
-            'о' => 'o',   'п' => 'p',   'р' => 'r',
-            'с' => 's',   'т' => 't',   'у' => 'u',
-            'ф' => 'f',   'х' => 'h',   'ц' => 'c',
-            'ч' => 'ch',  'ш' => 'sh',  'щ' => 'sch',
-            'ь' => '',  'ы' => 'y',   'ъ' => '',
-            'э' => 'e',   'ю' => 'yu',  'я' => 'ya',
+            'а' => 'a', 'б' => 'b', 'в' => 'v',
+            'г' => 'g', 'д' => 'd', 'е' => 'e',
+            'ё' => 'e', 'ж' => 'zh', 'з' => 'z',
+            'и' => 'i', 'й' => 'y', 'к' => 'k',
+            'л' => 'l', 'м' => 'm', 'н' => 'n',
+            'о' => 'o', 'п' => 'p', 'р' => 'r',
+            'с' => 's', 'т' => 't', 'у' => 'u',
+            'ф' => 'f', 'х' => 'h', 'ц' => 'c',
+            'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch',
+            'ь' => '', 'ы' => 'y', 'ъ' => '',
+            'э' => 'e', 'ю' => 'yu', 'я' => 'ya',
         );
         $str = strtr($str, $converter);
         $str = preg_replace('~[^-a-z0-9_]+~u', '_', $str);
@@ -418,7 +445,8 @@ class Gleb
     }
 
 
-    function SetTranslateAPIKey($key){
+    function SetTranslateAPIKey($key)
+    {
         $this->yandex_translate_api_key = $key;
     }
 
@@ -431,12 +459,13 @@ class Gleb
      *
      * @return string
      */
-    public function YandexTranslate($str, $lang = 'en', $format = 'plain'){
-        if($this->yandex_translate_api_key){
+    public function YandexTranslate($str, $lang = 'en', $format = 'plain')
+    {
+        if ($this->yandex_translate_api_key) {
             $url = file_get_contents('https://translate.yandex.net/api/v1.5/tr.json/translate?key=' . $this->yandex_translate_api_key . '&text=' . urlencode($str) . '&lang=' . $lang . '&format=' . $format);
             $json = json_decode($url);
             return $json->text[0];
-        }else{
+        } else {
             print "Не задан API ключ. Используйте SetTranslateAPIKey. Получить можно тут – <a target='_blank' href='http://api.yandex.ru/key/form.xml?service=trnsl'>http://api.yandex.ru/key/form.xml?service=trnsl</a>";
             return false;
         }
@@ -467,20 +496,21 @@ class Gleb
      *
      * @return string
      */
-    public function phone_format($phone) {
+    public function phone_format($phone)
+    {
         $format = array(
             '6' => '(4852) ##-##-##',
             '10' => '+7 (###) ###-##-##',
         );
         $phone = str_replace(" ", "", preg_replace("/[^0-9\s]/", "", trim($phone)));
-        if(strlen($phone) == 11){
+        if (strlen($phone) == 11) {
             $phone = substr($phone, 1);
-        }elseif(strlen($phone) == 10){
+        } elseif (strlen($phone) == 10) {
             // continue
-        }else{
+        } else {
             $phone = false;
         }
-        if(strpos($phone, '4852') !== false){
+        if (strpos($phone, '4852') !== false) {
             $phone = str_replace('4852', '', $phone);
         }
         $phone = trim($phone);
@@ -510,11 +540,12 @@ class Gleb
      *
      * @return array
      */
-    public function reArrayFiles(&$file_post) {
+    public function reArrayFiles(&$file_post)
+    {
         $file_ary = array();
         $file_count = count($file_post['name']);
         $file_keys = array_keys($file_post);
-        for ($i=0; $i<$file_count; $i++) {
+        for ($i = 0; $i < $file_count; $i++) {
             foreach ($file_keys as $key) {
                 $file_ary[$i][$key] = $file_post[$key][$i];
             }
