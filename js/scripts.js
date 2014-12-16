@@ -35,7 +35,12 @@ function timepicker() {
 }
 function bxSlider() {
     $('.bxslider').bxSlider({
-        pager: false
+        pager: false,
+        slideWidth: 300,
+        minSlides: 2,
+        maxSlides: 3,
+        moveSlides: 1,
+        slideMargin: 10
     });
 }
 function ui_tabs() {
