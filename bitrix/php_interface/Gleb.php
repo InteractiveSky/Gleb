@@ -260,15 +260,13 @@ class Gleb
             case 'application/octet-stream':
                 if (preg_match('/\.(doc|docx)$/', $file_array['FILE_NAME'])) {
                     $type = 'doc';
-
                 }
                 if (preg_match('/\.(xls|xlsx)$/', $file_array['FILE_NAME'])) {
                     $type = 'xls';
-
                 }
                 break;
             default:
-                $type = "doc";
+                $type = "txt";
         }
         return $type;
     }
