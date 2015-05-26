@@ -23,7 +23,7 @@ function OnAfterUserRegisterHandler(&$arFields)
     if (intval($arFields["ID"])>0)
     {
         $toSend = Array();
-        $toSend["PASSWORD"] = $arFields["PASSWORD_CONFIRM"];
+        $toSend["PASSWORD"] = $arFields["CONFIRM_PASSWORD"];
         $toSend["EMAIL"] = $arFields["EMAIL"];
         $toSend["USER_ID"] = $arFields["ID"];
         $toSend["USER_IP"] = $arFields["USER_IP"];
