@@ -378,11 +378,15 @@ class Gleb
      *
      * @return array Массив с информацией о регионе
      */
-    public static function GetIPInfo($ip)
+    public static function GetIPInfo()
     {
-        $xml = simplexml_load_string(file_get_contents("http://ipgeobase.ru:7020/geo?ip=" . $ip));
-        $result = (array)$xml->ip;
-        return $result;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://ipgeobase.ru:7020/geo?ip=".$_SERVER['REMOTE_ADDR']);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+        $xml = simplexml_load_string(curl_exec($ch));
+        return $xml->ip;
     }
 
     /**
