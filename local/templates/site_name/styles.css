@@ -1,0 +1,71 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.5em;
+    font-family: 'Arial', sans-serif;
+}
+p {
+    margin: 1em 0;
+}
+img.imgleft {
+    float: left;
+    margin: 0 22px 22px 0;
+}
+img.imgright {
+    float: right;
+    margin: 0 0 22px 22px;
+}
+h1 {
+    font-size: 30px;
+    line-height: 1.1em;
+    margin: 40px 0 20px 0;
+}
+h2 {
+    font-size: 26px;
+    line-height: 1.1em;
+    margin: 40px 0 20px 0;
+}
+h3 {
+    font-size: 24px;
+    line-height: 1.1em;
+    margin: 40px 0 20px 0;
+}
+h4 {
+    font-size: 18px;
+    line-height: 1.1em;
+    margin: 40px 0 20px 0;
+}
+ul, ol {
+    margin: 1em 0;
+}
+li {
+    margin: 0 0 0.5em 0;
+}
+.wrap {
+    width: 80%;
+    min-width: 980px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+table.table {
+    border-collapse: collapse;
+}
+table.table th {
+    background: #D8D8D8;
+    text-align: left;
+}
+table.table td, table.table th {
+    padding: 20px;
+    border: solid 5px #fff;
+}
+table.table tr:nth-child(odd) td {
+    background: #F2F2F2;
+}
+hr {
+    height: 1px;
+    border: none;
+    margin: 1em 0;
+    background: #D8D8D8;
+}
