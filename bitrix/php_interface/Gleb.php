@@ -127,7 +127,7 @@ class Gleb
 
     /**
      * Генерирует "код" по url
-     * Может быть полезно, для ыгенерации css класса по url страниц
+     * Может быть полезно, для генерации css класса по url страниц
      * /speaker-form/  => speaker-form
      * @param bool $url Адрес страницы
      * @return string
@@ -304,61 +304,6 @@ class Gleb
         return mail($to, $subject, $text, $headers);
     }
 
-    public function SetCleanwebAPIKey($key)
-    {
-        $this->yandex_cleanweb_api_key = $key;
-    }
-
-    /**
-     * Проверка формы на спам
-     * @static
-     * @param $value mixed Одномерный массив или строка для проверки на спам
-     *
-     * @return boolean Спам (true) или нет (false)
-     */
-    public function IsSpam($value)
-    {
-        if ($this->yandex_cleanweb_api_key) {
-            $url_api = 'http://cleanweb-api.yandex.ru/1.0/';
-
-            if (is_array($value)) {
-                $value = implode(", ", $value);
-            }
-
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_URL, $url_api . 'check-spam');
-            curl_setopt($ch, CURLOPT_POSTFIELDS, 'key=' . urlencode($this->yandex_cleanweb_api_key) . '&body-plain=' . urlencode($value));
-            $response = new SimpleXMLElement(curl_exec($ch));
-            curl_close($ch);
-            return ($response->text['spam-flag'] == 'yes');
-        } else {
-            print "Не задан API ключ. Используйте SetCleanwebAPIKey. Получить можно тут – <a target='_blank' href='http://api.yandex.ru/key/form.xml?service=cw'>http://api.yandex.ru/key/form.xml?service=cw</a>";
-            return false;
-        }
-    }
-
-    /**
-     * Проверка битрикс-формы на спам
-     * @static
-     * @param $values array Массив со значениями результата формы
-     *
-     * @return boolean Спам (true) или нет (false)
-     */
-    public function IsBitrixFormValuesSpam($values)
-    {
-        $fields_to_check = Array();
-        foreach ($values as $id => $value) {
-            if ((strpos($id, "form_") === 0) && $value) {
-                $fields_to_check[] = $value;
-            }
-        }
-        $string_to_check = implode(", ", $fields_to_check);
-
-        return $this->IsSpam($string_to_check);
-    }
 
     /**
      * Проверка, вызвана ли страница AJAX'ом
