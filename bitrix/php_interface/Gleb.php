@@ -512,4 +512,28 @@ class Gleb
         if (!$year) $year = date("Y");
         return (($year < date("Y")) ? $year . " " . $sym . " " . date('Y') : $year);
     }
+
+    /**
+     * Склонение слов
+     * 
+     * @param $str string Строка для преобразования
+     * @param string $case Падеж для склонения (РУССКАЯ БУКВА: Р, Д, В, Т, П)
+     * @param string $plural Множественное число (Y, N)
+     * @return mixed
+     */
+    public static function morpher($str, $case = "Р", $plural = "N")
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://api.morpher.ru/WebService.asmx/GetXml?s=" . urlencode($str));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 3);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
+        $xml = simplexml_load_string(curl_exec($ch));
+        if(isset($xml->множественное) && $plural == "Y")
+        {
+            return current($xml->множественное->$case);
+        }
+        return current($xml->$case);
+    }
+
 }
