@@ -1,3 +1,6 @@
+*, *:after, *:before {
+    box-sizing: border-box;
+}
 html, body {
     margin: 0;
     padding: 0;
@@ -7,6 +10,12 @@ html, body {
 }
 p {
     margin: 1em 0;
+}
+*:first-child {
+    margin-top: 0;
+}
+*:last-child {
+    margin-bottom: 0;
 }
 img.imgleft {
     float: left;
